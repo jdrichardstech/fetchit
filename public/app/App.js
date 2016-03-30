@@ -8,6 +8,9 @@ var Orders = require('./components/containers/Orders');
 var Account = require('./components/containers/Account');
 var Login = require('./components/containers/Login');
 var Upload = require('./components/containers/Upload');
+var Deliver = require('./components/containers/Deliver');
+var About = require('./components/containers/About');
+var Developer = require('./components/containers/Developer');
 
 
 var App = React.createClass({
@@ -48,6 +51,15 @@ var App = React.createClass({
 		}
 		else if (this.state.page == 'upload'){
 			container = <Upload />
+		}
+		else if (this.state.page == 'deliver'){
+			container = <Deliver />
+		}
+		else if (this.state.page == 'about'){
+			container = <About />
+		}
+		else if (this.state.page == 'developer'){
+			container = <Developer />
 		}
 
 		return(
