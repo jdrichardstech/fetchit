@@ -81,7 +81,7 @@ module.exports = {
 
 				// 	EmailManager.sendBatchEmail('jdrichardstech@gmail.com', recipients, 'Order Notification Promise', html, null);
 				// });
-				EmailManager.sendBatchEmail('jdrichardstech@gmail.com', recipients, subject, note, null);
+					EmailManager.sendEmail('jdrichardstech@gmail.com', profile.email, subject, note, null);
 				resolve();
 
 			})
