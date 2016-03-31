@@ -44,7 +44,7 @@ var notifyProfiles= function(filters, note, subject){
 
 var notifyProfile=function(filters, note, subject){
 	return new Promise(function (resolve,reject){
-		ProfileController.getById(order.customer, function(err, profile){
+		ProfileController.getById(filters, function(err, profile){
 			if (err){
 				reject(err);
 			}
