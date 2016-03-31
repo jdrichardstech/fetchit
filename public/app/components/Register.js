@@ -24,8 +24,14 @@ var Register = React.createClass({
 		if (this.state.visitor.id == null)
 			return;
 
+		if(this.state.visitor.type=='customer'){
 		// user just registered, redirect to account page:
-		window.location.href = '/account';
+			window.location.href = '/account';
+		return;
+		}
+		if(this.state.visitor.type == 'fetcher'){
+			window.location.href = '/orders'
+		}
 	},
 
 

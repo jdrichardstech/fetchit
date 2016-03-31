@@ -2,6 +2,9 @@ var React = require('react');
 
 var Sidebar = React.createClass({
 
+
+	
+	
 	render: function(){
 		return (
 	        <header id="header" className="no-sticky">
@@ -23,30 +26,19 @@ var Sidebar = React.createClass({
 	                            <li>
 	                                <a href="/"><div>Home</div></a>
 	                            </li>
+	                            
+	                            
 	                            <li>
 	                                <a href="/about"><div>About</div></a>
 	                            </li>
 	                            <li>
 	                                <a href="/deliver"><div>Want To Be A Fetcher?</div></a>
 	                            </li>
-	                            <li>
-	                                <a href="/developer"><div>Meet The Developer</div></a>
-	                            </li>
+	                           
 	                            
 	                        </ul>
 	                    </nav>
 
-	                    <div className="clearfix visible-md visible-lg">
-	                        <a href="#" className="social-icon si-small si-borderless si-facebook">
-	                            <i className="icon-linkedin"></i>
-	                            <i className="icon-linkedin"></i>
-	                        </a>
-
-	                        <a href="#" className="social-icon si-small si-borderless si-twitter">
-	                            <i className="icon-twitter"></i>
-	                            <i className="icon-twitter"></i>
-	                        </a>
-	                    </div>
 	                </div>
 	            </div>
 	        </header>			
