@@ -1,6 +1,7 @@
 var Profile = require('../models/Profile');
 var bcrypt = require('bcrypt');
 var EmailManager = require('../managers/EmailManager');
+var FileManager = require('../managers/FileManager');
 var Promise = require('bluebird');
 
 module.exports = {
@@ -64,7 +65,7 @@ module.exports = {
 				// var html = data.replace('{{address}}', orderSummary['address']);
 				// html = html.replace('{{order}}', orderSummary['order']);
 
-				return ProfileController.notifyProfiles(profile.firstName, html, 'You have successfully registered');
+				return ProfileController.notifyProfiles(profile.summary, html, 'You have successfully registered');
 
 				//this block is now place in the notifyProfiles function
 				// 	ProfileController.get({type:'fetcher'}, false, function(err, results){
