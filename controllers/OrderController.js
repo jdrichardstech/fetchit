@@ -99,7 +99,7 @@ module.exports = {
 				var orderSummary = order.summary();
 				// html = data;
 				var html = data.replace('{{address}}', orderSummary['address']);
-				html = data.replace('{{order}}', orderSummary['order']);
+				html = html.replace('{{order}}', orderSummary['order']);
 
 				return notifyProfiles({type:'fetcher'}, html, 'An Order Came In');
 
