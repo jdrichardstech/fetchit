@@ -4,9 +4,9 @@ var ProfileController = require('../controllers/ProfileController');
 var fs = require('fs');
 var Promise = require('bluebird');
 
-
+//--------------Promise Methods ---------------------
 var fetchFile = function(path){
-	return new Promise(function(resolve, reject){
+	return new Promise(function (resolve, reject){
 		fs.readFile(path, 'utf8', function(err,data){
 			if(err){
 				reject(err);
@@ -15,6 +15,28 @@ var fetchFile = function(path){
 				resolve(data);
 			}
 
+		});
+
+	});
+}
+
+// filters are the profiles, note is body of html and subject is the subject notification
+var notifyProfiles= function(filters, note, subject){
+	return new Promise(function (resolve,reject){
+		ProfileController.get(filters, false, function(err, results){
+			if (err){
+				reject(err);
+			}
+			else{
+			var recipients = [];
+			for (var i=0; i<results.length; i++){
+				var fetcher = results[i];
+				recipients.push(fetcher.email);
+			}
+
+			EmailManager.sendBatchEmail('jdrichardstech@gmail.com', recipients, subject, note, null);
+			resolve();
+			}
 		});
 
 	});
@@ -70,33 +92,35 @@ module.exports = {
 				completion(err, null);
 			    return;
 			}
-
+			
 			var path = 'public/email/email.html';
 			fetchFile(path)
 			.then(function(data){
 				var orderSummary = order.summary();
-				var html = data;
-				html = html.replace('{{address}}', orderSummary['address']);
-				html = html.replace('{{order}}', orderSummary['order']);
+				// html = data;
+				var html = data.replace('{{address}}', orderSummary['address']);
+				html = data.replace('{{order}}', orderSummary['order']);
 
-					ProfileController.get({type:'fetcher'}, false, function(err, results){
-					if (err){
+				return notifyProfiles({type:'fetcher'}, html, 'An Order Came In');
 
-					}
+				//this block is now place in the notifyProfiles function
+				// 	ProfileController.get({type:'fetcher'}, false, function(err, results){
+				// 	if (err){
 
-					var recipients = [];
-					for (var i=0; i<results.length; i++){
-						var fetcher = results[i];
-						recipients.push(fetcher.email);
-					}
+				// 	}
 
-					EmailManager.sendBatchEmail('jdrichardstech@gmail.com', recipients, 'Order Notification Promise', html, null);
-				});
+				// 	var recipients = [];
+				// 	for (var i=0; i<results.length; i++){
+				// 		var fetcher = results[i];
+				// 		recipients.push(fetcher.email);
+				// 	}
+
+				// 	EmailManager.sendBatchEmail('jdrichardstech@gmail.com', recipients, 'Order Notification Promise', html, null);
+				// });
+
 
 			})
-			.catch(function(err){
-
-			});
+	
 			
 			completion(null, order.summary());
 		});
