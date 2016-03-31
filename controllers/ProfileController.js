@@ -62,7 +62,7 @@ module.exports = {
 			FileManager.fetchFile(path)
 			.then(function(data){
 				var profileSummary = profile.summary();
-				html = data;
+				var html = data;
 				// var html = data.replace('{{address}}', orderSummary['address']);
 				// html = html.replace('{{order}}', orderSummary['order']);
 

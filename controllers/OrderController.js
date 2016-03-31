@@ -147,6 +147,8 @@ module.exports = {
 			.catch(function(err){
 
 				});
+
+			
 	
 			
 			completion(null, order.summary());
