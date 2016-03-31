@@ -28,14 +28,14 @@ var notifyProfiles= function(filters, note, subject){
 				reject(err);
 			}
 			else{
-			var recipients = [];
-			for (var i=0; i<results.length; i++){
-				var fetcher = results[i];
-				recipients.push(fetcher.email);
-			}
+				var recipients = [];
+				for (var i=0; i<results.length; i++){
+					var fetcher = results[i];
+					recipients.push(fetcher.email);
+				}
 
-			EmailManager.sendBatchEmail('jdrichardstech@gmail.com', recipients, subject, note, null);
-			resolve();
+				EmailManager.sendBatchEmail('jdrichardstech@gmail.com', recipients, subject, note, null);
+				resolve();
 			}
 		});
 
@@ -46,10 +46,13 @@ var notifyProfile=function(filters, note, subject){
 	return new Promise(function (resolve,reject){
 		ProfileController.getById(order.customer, function(err, profile){
 			if (err){
-
+				reject(err);
 			}
+			else{
 
-			EmailManager.sendEmail('jdrichardstech@gmail.com', profile.email, subject, note, null);
+				EmailManager.sendEmail('jdrichardstech@gmail.com', profile.email, subject, note, null);
+				resolve();
+			}
 		});
 
 	});
@@ -153,10 +156,10 @@ module.exports = {
 			if (params['fetcher'] != null){
 				var path = 'public/email/customernotification.html';
 				fetchFile(path)
-				.then(function(){
+				.then(function(data){
 					var orderSummary = order.summary();
-					var html = data;
-					html = html.replace('{{order}}', order.order);
+					// var html = data;
+					var html = data.replace('{{order}}', order.order);
 					return notifyProfile(order.customer, html, "Fetch Order Claimed");
 
 				})
