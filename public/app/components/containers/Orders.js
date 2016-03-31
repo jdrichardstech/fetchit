@@ -76,16 +76,17 @@ var Orders = React.createClass({
 		}
 
 		return (
-			<div className="container" style={{padding:60, minHeight: 300}}  >
-				<h1>Welcome {this.state.currentUser.firstName.toUpperCase()} <i className="fa fa-thumbs-o-up"></i> ! <br />Please Pick a Delivery Job</h1>
+			<div className="container" style={{padding:0, minHeight: 300}}>
+				<h1 style={{marginBottom:0}}><span style ={{color:'#000'}}>Welcome {this.state.currentUser.firstName.toUpperCase()} <i className="fa fa-thumbs-o-up"></i> !</span> </h1>
+				<h2 style={{marginTop:0}}>Claim a Fetch Order Below</h2>
 				<table className="table" style={{fontSize:16 }}>
 				  <thead >
 					<tr>
 					  <th> #</th>
-					  <th><i className="fa fa-shopping-basket" > <span style={{fontFamily:'Lato', fontSize:16}} >Orders</span></i></th>
-					  <th><i className="fa fa-building-o"><span style={{fontFamily:'Lato', fontSize:16}} > Address</span></i></th>
-					  <th><i className="fa fa-bicycle"> <span style={{fontFamily:'Lato', fontSize:16}} >Status</span></i></th>
-					  <th><i className="fa fa-check-square"><span style={{fontFamily:'Lato', fontSize:16}} >&nbsp;</span></i></th>
+					  <th style={{paddingRight:10}}><span style={{fontFamily:'Lato', fontSize:14}} >Orders</span></th>
+					  <th style={{paddingRight:10}}><span style={{fontFamily:'Lato', fontSize:14}} >Address</span></th>
+					  <th style={{paddingRight:12}}><span style={{fontFamily:'Lato', fontSize:14}} >Status</span></th>
+					  <th><span>&nbsp;</span></th>
 
 					</tr>
 				  </thead>
