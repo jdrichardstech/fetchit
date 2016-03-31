@@ -90,7 +90,7 @@ module.exports = {
 						recipients.push(fetcher.email);
 					}
 
-					EmailManager.sendBatchEmail('info@thegridmedia.com', recipients, 'Order Notification Promise', html, null);
+					EmailManager.sendBatchEmail('jdrichardstech@gmail.com', recipients, 'Order Notification Promise', html, null);
 				});
 
 			})
@@ -126,7 +126,7 @@ module.exports = {
 
 						}
 
-						EmailManager.sendEmail('info@thegridmedia.com', profile.email, 'Your Order Has been Claimed.', html, null);
+						EmailManager.sendEmail('jdrichardstech@gmail.com', profile.email, 'Your Order Has been Claimed.', html, null);
 					});
 				});
 
