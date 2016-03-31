@@ -42,6 +42,21 @@ var notifyProfiles= function(filters, note, subject){
 	});
 }
 
+var notifyProfile=function(filters, note, subject){
+	return new Promise(function (resolve,reject){
+		ProfileController.getById(order.customer, function(err, profile){
+			if (err){
+
+			}
+
+			EmailManager.sendEmail('jdrichardstech@gmail.com', profile.email, subject, note, null);
+		});
+
+	});
+
+}
+
+
 module.exports = {
 
 	get: function(params, isRaw, completion){
@@ -137,22 +152,31 @@ module.exports = {
 			// delivery person is claiming an order:
 			if (params['fetcher'] != null){
 				var path = 'public/email/customernotification.html';
-
-				fs.readFile(path, 'utf8', function (err, data) {
-					if (err) { }
-
+				fetchFile(path)
+				.then(function(){
 					var orderSummary = order.summary();
 					var html = data;
 					html = html.replace('{{order}}', order.order);
+					return notifyProfile(order.customer, html, "Fetch Order Claimed");
 
-					ProfileController.getById(order.customer, function(err, profile){
-						if (err){
+				})
+				
 
-						}
+				// fs.readFile(path, 'utf8', function (err, data) {
+				// 	if (err) { }
 
-						EmailManager.sendEmail('jdrichardstech@gmail.com', profile.email, 'Your Order Has been Claimed.', html, null);
-					});
-				});
+				// 	// var orderSummary = order.summary();
+				// 	// var html = data;
+				// 	// html = html.replace('{{order}}', order.order);
+
+				// 	// ProfileController.getById(order.customer, function(err, profile){
+				// 	// 	if (err){
+
+				// 	// 	}
+
+				// 	// 	EmailManager.sendEmail('jdrichardstech@gmail.com', profile.email, 'Your Order Has been Claimed.', html, null);
+				// 	// });
+				// });
 
 			}
 			
