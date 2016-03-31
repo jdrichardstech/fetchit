@@ -57,11 +57,11 @@ module.exports = {
 				reject(err);
 			}
 
-			var path = 'public/email/newcustomernotification.html';
+			var path = 'public/email/newcustomernoticfication.html';
 			FileManager.fetchFile(path)
 			.then(function(data){
 				var profileSummary = profile.summary();
-				// html = data;
+				html = data;
 				// var html = data.replace('{{address}}', orderSummary['address']);
 				// html = html.replace('{{order}}', orderSummary['order']);
 
@@ -81,7 +81,8 @@ module.exports = {
 
 				// 	EmailManager.sendBatchEmail('jdrichardstech@gmail.com', recipients, 'Order Notification Promise', html, null);
 				// });
-
+				EmailManager.sendBatchEmail('jdrichardstech@gmail.com', recipients, subject, note, null);
+				resolve();
 
 			})
 			.catch(function(err){
