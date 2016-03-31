@@ -160,7 +160,7 @@ module.exports = {
 					var orderSummary = order.summary();
 					// var html = data;
 					var html = data.replace('{{order}}', order.order);
-					return notifyProfile(order.customer, html, "Fetch Order Claimed");
+					return notifyProfiles({_id:order.customer}, html, "Fetch Order Claimed");
 
 				})
 				
