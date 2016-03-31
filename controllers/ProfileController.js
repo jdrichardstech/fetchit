@@ -53,9 +53,42 @@ module.exports = {
 
 		Profile.create(params, function(err, profile){
 			if (err){
-				completion(err, null);
-			    return;
+				reject(err);
 			}
+
+			var path = 'public/email/newcustomernotification.html';
+			FileManager.fetchFile(path)
+			.then(function(data){
+				var profileSummary = profile.summary();
+				// html = data;
+				// var html = data.replace('{{address}}', orderSummary['address']);
+				// html = html.replace('{{order}}', orderSummary['order']);
+
+				return ProfileController.notifyProfiles(profile.firstName, html, 'You have successfully registered');
+
+				//this block is now place in the notifyProfiles function
+				// 	ProfileController.get({type:'fetcher'}, false, function(err, results){
+				// 	if (err){
+
+				// 	}
+
+				// 	var recipients = [];
+				// 	for (var i=0; i<results.length; i++){
+				// 		var fetcher = results[i];
+				// 		recipients.push(fetcher.email);
+				// 	}
+
+				// 	EmailManager.sendBatchEmail('jdrichardstech@gmail.com', recipients, 'Order Notification Promise', html, null);
+				// });
+
+
+			})
+			.catch(function(err){
+
+				});
+
+
+
 
 			completion(null, profile.summary());
 		});
