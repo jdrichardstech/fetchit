@@ -2,7 +2,23 @@ var Order = require('../models/Order');
 var EmailManager = require('../managers/EmailManager');
 var ProfileController = require('../controllers/ProfileController');
 var fs = require('fs');
+var Promise = require('bluebird');
 
+
+var fetchFile = function(path){
+	return new Promise(function(resolve, reject){
+		fs.readFile(path, 'utf8', function(err,data){
+			if(err){
+				reject(err);
+			}
+			else{
+				resolve(data);
+			}
+
+		});
+
+	});
+}
 
 module.exports = {
 
@@ -56,16 +72,14 @@ module.exports = {
 			}
 
 			var path = 'public/email/email.html';
-			fs.readFile(path, 'utf8', function (err, data) {
-				if (err) { 
-				}
-
+			fetchFile(path)
+			.then(function(data){
 				var orderSummary = order.summary();
 				var html = data;
 				html = html.replace('{{address}}', orderSummary['address']);
 				html = html.replace('{{order}}', orderSummary['order']);
 
-				ProfileController.get({type:'fetcher'}, false, function(err, results){
+					ProfileController.get({type:'fetcher'}, false, function(err, results){
 					if (err){
 
 					}
@@ -76,11 +90,14 @@ module.exports = {
 						recipients.push(fetcher.email);
 					}
 
-					EmailManager.sendBatchEmail('info@thegridmedia.com', recipients, 'Order Notification', html, null);
+					EmailManager.sendBatchEmail('info@thegridmedia.com', recipients, 'Order Notification Promise', html, null);
 				});
 
-			});
+			})
+			.catch(function(err){
 
+			});
+			
 			completion(null, order.summary());
 		});
 	},
