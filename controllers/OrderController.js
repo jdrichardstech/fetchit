@@ -42,6 +42,8 @@ var notifyProfiles= function(filters, note, subject){
 	});
 }
 
+
+//this also worked with argument below simply customer.order instead of _id:customer.order
 var notifyProfile=function(filters, note, subject){
 	return new Promise(function (resolve,reject){
 		ProfileController.getById(filters, function(err, profile){
@@ -138,6 +140,9 @@ module.exports = {
 
 
 			})
+			.catch(function(err){
+
+				});
 	
 			
 			completion(null, order.summary());
@@ -163,6 +168,9 @@ module.exports = {
 					return notifyProfiles({_id:order.customer}, html, "Fetch Order Claimed");
 
 				})
+				.catch(function(err){
+
+				});
 				
 
 				// fs.readFile(path, 'utf8', function (err, data) {
