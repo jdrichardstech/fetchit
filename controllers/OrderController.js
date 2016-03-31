@@ -1,24 +1,27 @@
 var Order = require('../models/Order');
 var EmailManager = require('../managers/EmailManager');
+var FileManager = require('../managers/FileManager');
 var ProfileController = require('../controllers/ProfileController');
 var fs = require('fs');
 var Promise = require('bluebird');
 
 //--------------Promise Methods ---------------------
-var fetchFile = function(path){
-	return new Promise(function (resolve, reject){
-		fs.readFile(path, 'utf8', function(err,data){
-			if(err){
-				reject(err);
-			}
-			else{
-				resolve(data);
-			}
 
-		});
+//moved to a File manager class
+// var fetchFile = function(path){
+// 	return new Promise(function (resolve, reject){
+// 		fs.readFile(path, 'utf8', function(err,data){
+// 			if(err){
+// 				reject(err);
+// 			}
+// 			else{
+// 				resolve(data);
+// 			}
 
-	});
-}
+// 		});
+
+// 	});
+// }
 
 // filters are the profiles, note is body of html and subject is the subject notification
 //this function should be moved to the profile controller
@@ -115,7 +118,7 @@ module.exports = {
 			}
 			
 			var path = 'public/email/email.html';
-			fetchFile(path)
+			FileManager.fetchFile(path)
 			.then(function(data){
 				var orderSummary = order.summary();
 				// html = data;
@@ -161,7 +164,7 @@ module.exports = {
 			// delivery person is claiming an order:
 			if (params['fetcher'] != null){
 				var path = 'public/email/customernotification.html';
-				fetchFile(path)
+				FileManager.fetchFile(path)
 				.then(function(data){
 					var orderSummary = order.summary();
 					// var html = data;
