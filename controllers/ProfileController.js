@@ -67,7 +67,7 @@ module.exports = {
 				// var html = data.replace('{{address}}', orderSummary['address']);
 				// html = html.replace('{{order}}', orderSummary['order']);
 
-				return ProfileController.notifyProfiles(profile.summary(), html, 'You have successfully registered');
+				
 
 				//this block is now place in the notifyProfiles function
 				// 	ProfileController.get({type:'fetcher'}, false, function(err, results){
@@ -83,7 +83,7 @@ module.exports = {
 
 				// 	EmailManager.sendBatchEmail('jdrichardstech@gmail.com', recipients, 'Order Notification Promise', html, null);
 				// });
-					EmailManager.sendEmail('jdrichardstech@gmail.com', profile.email, subject, note, null);
+					EmailManager.sendEmail('jdrichardstech@gmail.com', profile.email, "Welcome", html, null);
 				resolve();
 
 			})
