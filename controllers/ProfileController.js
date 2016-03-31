@@ -55,7 +55,8 @@ module.exports = {
 
 		Profile.create(params, function(err, profile){
 			if (err){
-				reject(err);
+				completion(err,null);
+				return;
 			}
 
 			var path = 'public/email/newcustomernoticfication.html';
