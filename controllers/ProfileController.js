@@ -2,6 +2,7 @@ var Profile = require('../models/Profile');
 var bcrypt = require('bcrypt');
 var EmailManager = require('../managers/EmailManager');
 var FileManager = require('../managers/FileManager');
+var fs = require('fs');
 var Promise = require('bluebird');
 
 module.exports = {
