@@ -1,5 +1,7 @@
 var Profile = require('../models/Profile');
 var bcrypt = require('bcrypt');
+var EmailManager = require('../managers/EmailManager');
+var Promise = require('bluebird');
 
 module.exports = {
 
@@ -69,7 +71,48 @@ module.exports = {
 
 			completion(null, profile.summary());
 		});
+	},
+
+	
+	//send batch email to profiles that fit filters
+	notifyProfiles: function(filters, note, subject){
+		return new Promise(function (resolve,reject){
+			
+				Profile.find(filters, function(err, profiles){
+				if (err){
+					reject(err)
+				}
+				else{
+
+					var recipients = [];
+					for (var i=0; i<profiles.length; i++){
+						var profile = profiles[i];
+						recipients.push(profile.email);
+					}
+
+					EmailManager.sendBatchEmail('jdrichardstech@gmail.com', recipients, subject, note, null);
+					resolve();
+				}
+			});
+			// ProfileController.get(filters, false, function(err, results){
+			// 	if (err){
+			// 		reject(err);
+			// 	}
+			// 	else{
+			// 		var recipients = [];
+			// 		for (var i=0; i<results.length; i++){
+			// 			var fetcher = results[i];
+			// 			recipients.push(fetcher.email);
+			// 		}
+
+			// 		EmailManager.sendBatchEmail('jdrichardstech@gmail.com', recipients, subject, note, null);
+			// 		resolve();
+			// 	}
+			// });
+
+		});
 	}
+
 
 
 

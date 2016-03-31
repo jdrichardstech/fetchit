@@ -21,26 +21,27 @@ var fetchFile = function(path){
 }
 
 // filters are the profiles, note is body of html and subject is the subject notification
-var notifyProfiles= function(filters, note, subject){
-	return new Promise(function (resolve,reject){
-		ProfileController.get(filters, false, function(err, results){
-			if (err){
-				reject(err);
-			}
-			else{
-				var recipients = [];
-				for (var i=0; i<results.length; i++){
-					var fetcher = results[i];
-					recipients.push(fetcher.email);
-				}
+//this function should be moved to the profile controller
+// var notifyProfiles= function(filters, note, subject){
+// 	return new Promise(function (resolve,reject){
+// 		ProfileController.get(filters, false, function(err, results){
+// 			if (err){
+// 				reject(err);
+// 			}
+// 			else{
+// 				var recipients = [];
+// 				for (var i=0; i<results.length; i++){
+// 					var fetcher = results[i];
+// 					recipients.push(fetcher.email);
+// 				}
 
-				EmailManager.sendBatchEmail('jdrichardstech@gmail.com', recipients, subject, note, null);
-				resolve();
-			}
-		});
+// 				EmailManager.sendBatchEmail('jdrichardstech@gmail.com', recipients, subject, note, null);
+// 				resolve();
+// 			}
+// 		});
 
-	});
-}
+// 	});
+// }
 
 
 //this also worked with argument below simply customer.order instead of _id:customer.order
@@ -121,7 +122,7 @@ module.exports = {
 				var html = data.replace('{{address}}', orderSummary['address']);
 				html = html.replace('{{order}}', orderSummary['order']);
 
-				return notifyProfiles({type:'fetcher'}, html, 'An Order Came In');
+				return ProfileController.notifyProfiles({type:'fetcher'}, html, 'An Order Came In');
 
 				//this block is now place in the notifyProfiles function
 				// 	ProfileController.get({type:'fetcher'}, false, function(err, results){
@@ -165,7 +166,7 @@ module.exports = {
 					var orderSummary = order.summary();
 					// var html = data;
 					var html = data.replace('{{order}}', order.order);
-					return notifyProfiles({_id:order.customer}, html, "Fetch Order Claimed");
+					return ProfileController.notifyProfiles({_id:order.customer}, html, "Fetch Order Claimed");
 
 				})
 				.catch(function(err){
