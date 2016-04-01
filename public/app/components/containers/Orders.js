@@ -19,6 +19,7 @@ var Orders = React.createClass({
 				address:'',
 				fetcher:'',
 				status:'',
+				timeplaced:Date.now,
 				cost: 0
 			},
 			showModal: false
@@ -89,25 +90,16 @@ var Orders = React.createClass({
 		
 		event.preventDefault();
 		var order = this.state.orders['fetcher'];
-		var status = this.state.orders['status']
+		var status = this.state.orders['status'];
 		if(order != this.state.currentUser.id){
 			this.setState({
 			selectedOrder: OrderStore.getOrder(event.target.id),
 			showModal: false
 		});
 			alert("This order has been claimed. Fetch again!");
+
 			return;
 		}
-
-		// if(status == 'delivered'){
-		// 	this.setState({
-		// 	selectedOrder: OrderStore.getOrder(event.target.id),
-		// 	showModal: false
-		// });
-		// 	alert("This order has been claimed. Fetch again!");
-		// 	return;
-		// }
-
 
 
 		this.setState({
@@ -147,10 +139,10 @@ var Orders = React.createClass({
 			orderList = this.state.orders.map(function(order, i){
 
 				if (order.fetcher.length > 0){ // this order is claimed
-					row = <tr key={i}><td>{i+1}</td><td><a onClick={_this.showModal} id={order.id} href="#">{order.order}</a></td><td>{order.address}</td><td>{order.status}</td><td><button onClick={_this.claimOrder} id={i} className="btn btn-danger">Claimed</button></td></tr>;
+					row = <tr key={i}><td>{i+1}</td><td><a onClick={_this.showModal} id={order.id} href="#">{order.order}</a></td><td>{order.address}</td><td>{order.status}</td><td>{order.timeplaced}</td><td><button onClick={_this.claimOrder} id={i} className="btn btn-danger">Claimed</button></td></tr>;
 				}
 				else {
-					row = <tr key={i}><td>{i+1}</td><td><a onClick={_this.showModal} id={order.id} href="#">{order.order}</a></td><td>{order.address}</td><td>{order.status}</td><td><button onClick={_this.claimOrder} id={i} className="btn btn-success">Claim</button></td></tr>;
+					row = <tr key={i}><td>{i+1}</td><td><a onClick={_this.showModal} id={order.id} href="#">{order.order}</a></td><td>{order.address}</td><td>{order.status}</td><td>{order.timeplaced}</td><td><button onClick={_this.claimOrder} id={i} className="btn btn-success">Claim</button></td></tr>;
 				}
 
 				return row;
@@ -164,11 +156,12 @@ var Orders = React.createClass({
 				<table className="table" style={{fontSize:16 }}>
 				  <thead >
 					<tr>
-					  <th> #</th>
-					  <th><i className="fa fa-shopping-basket" > <span style={{fontFamily:'Lato', fontSize:16}} >Orders</span></i></th>
-					  <th><i className="fa fa-building-o"><span style={{fontFamily:'Lato', fontSize:16}} > Address</span></i></th>
-					  <th><i className="fa fa-bicycle"> <span style={{fontFamily:'Lato', fontSize:16}} >Status</span></i></th>
-					  <th><i className="fa fa-check-square"><span style={{fontFamily:'Lato', fontSize:16}} >&nbsp;</span></i></th>
+					  <th>#</th>
+					  <th><span style={{fontFamily:'Lato', fontSize:14}} >Orders</span></th>
+					  <th><span style={{fontFamily:'Lato', fontSize:14}} > Address</span></th>
+					  <th><span style={{fontFamily:'Lato', fontSize:14}} >Status</span></th>
+					  <th><span style={{fontFamily:'Lato', fontSize:14}} >Placed;</span></th>
+					  <th><span style={{fontFamily:'Lato', fontSize:14}} >&nbsp;</span></th>
 
 					</tr>
 				  </thead>
