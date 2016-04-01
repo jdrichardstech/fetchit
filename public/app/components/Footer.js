@@ -6,11 +6,8 @@ var Footer = React.createClass({
 		return (
 
 	        <footer id="footer" className="dark">
-
 	            <div id="copyrights">
-
 	                <div className="container clearfix">
-
 	                    <div className="col_half">
 	                        Copyrights &copy; 2016 All Rights Reserved by Canvas Inc.<br />
 	                        <div className="copyright-links">
@@ -40,11 +37,8 @@ var Footer = React.createClass({
 	                        <i className="icon-headphones"></i>
 	                        +91-11-6541-6369 
 	                    </div>
-
 	                </div>
-
 	            </div>
-
 	        </footer>
 
 		);

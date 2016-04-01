@@ -10,12 +10,8 @@ var About = React.createClass({
 
 				<div className="section topmargin-sm footer-stick">
 					<section id="content">
-
 						<div className="content-wrap">
-
-							<div className="container clearfix">
-
-								
+							<div className="container clearfix">								
 								<div className="postcontent nobottommargin col_last clearfix">
 								<img style={{display:'block', margin:'0 auto'}}height="150px" width="150px" className="center"alt = " " src="../images/jdgrafitti_round.png" />
 									<br />
@@ -40,7 +36,6 @@ var About = React.createClass({
 			                            <i className="icon-github"></i>
 			                        </a>
 			                    </div>
-
 							</div>
 						</div>
 					</section>
@@ -68,8 +63,7 @@ var About = React.createClass({
 									</div>
 									<div className="testi-content">
 										<p>Natus voluptatum enim quod necessitatibus quis expedita harum provident eos obcaecati id culpa corporis molestias.</p>
-										<div className="testi-meta">
-											
+										<div className="testi-meta">										
 											<span>Envato Inc.</span>
 										</div>
 									</div>
@@ -89,12 +83,9 @@ var About = React.createClass({
 							</div>
 						</div>
 					</div>
-
 				</div>
-
-
 			</div>
-			);
+		);
 	}
 
 });

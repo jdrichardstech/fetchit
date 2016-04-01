@@ -53,7 +53,6 @@ var Login = React.createClass({
 						<div className="section nopadding nomargin" style={{width:100+'%', height:100+'%', position:'absolute', left:0, top:0, background:'url("/images/loginbackgroundlogo.jpg")'}}></div>
 						<div className="section nobg full-screen nopadding nomargin">
 							<div className="container vertical-middle divcenter clearfix">
-
 								<div className="row center">
 									<a href="index.html">
 									<br />
@@ -61,8 +60,6 @@ var Login = React.createClass({
 									</a>
 								</div>
 								<br />
-				
-
 								<div className="panel panel-default divcenter noradius noborder" style={{maxWidth: 400, background: '#F9F9F9'}}>
 									<div className="row center" style={{padding:40}}>
 										<form id="login-form" name="login-form" className="nobottommargin" action="#" method="post">
@@ -82,8 +79,6 @@ var Login = React.createClass({
 												<button onClick={this.login} className="button button-3d button-red nomargin" id="login-form-submit" name="login-form-submit" value="login">Login</button>
 											</div>
 										</form>
-
-
 									</div>
 								</div>
 
@@ -100,7 +95,6 @@ var Login = React.createClass({
 			</div>
 		);
 	}
-
 });
 
 module.exports = Login;

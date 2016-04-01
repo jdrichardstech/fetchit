@@ -6,7 +6,6 @@ var Home = React.createClass({
 	render: function(){
 		return (
 			<div>
-
 		        <section id="slider" className="slider-parallax swiper_wrapper full-screen clearfix">
 		            <div className="slider-parallax-inner">
 
@@ -35,71 +34,68 @@ var Home = React.createClass({
 
 		            <div className="content-wrap">
 
-            				<div className="col_full nobottommargin center">
-								<h2>How it works?</h2>
-								<h3>A simple way to get what you need when you need</h3>
-							</div>
-							<br />
-							<div>
-								<div className="container clearfix">
-									<div className="col_one_third">
+            			<div className="col_full nobottommargin center">
+							<h2>How it works?</h2>
+							<h3>A simple way to get what you need when you need</h3>
+						</div>
+						<br />
+						<div>
+							<div className="container clearfix">
+								<div className="col_one_third">
 
-				                        <div className="feature-box fbox-center fbox-effect">
-				                            <div className="fbox-icon">
-				                                <a href="#"><i className="icon-edit i-alt"></i></a>
-				                            </div>
-				                            <h3>Place Order</h3>
-				                            <p>Simply type what you want and where it is</p>
-				                        </div>
-				                        
-				                    </div>
+			                        <div className="feature-box fbox-center fbox-effect">
+			                            <div className="fbox-icon">
+			                                <a href="#"><i className="icon-edit i-alt"></i></a>
+			                            </div>
+			                            <h3>Place Order</h3>
+			                            <p>Simply type what you want and where it is</p>
+			                        </div>
+			                        
+			                    </div>
 
-				                    <div className="col_one_third">
-				                        <div className="feature-box fbox-center fbox-effect">
-				                            <div className="fbox-icon">
-				                                <a href="#"><i className="icon-bolt i-alt"></i></a>
-				                            </div>
-				                            <h3>Fetch</h3>
-				                            <p>Fetecher will deliver items less than 30mins</p>
-				                        </div>
-				                    </div>
+			                    <div className="col_one_third">
+			                        <div className="feature-box fbox-center fbox-effect">
+			                            <div className="fbox-icon">
+			                                <a href="#"><i className="icon-bolt i-alt"></i></a>
+			                            </div>
+			                            <h3>Fetch</h3>
+			                            <p>Fetecher will deliver items less than 30mins</p>
+			                        </div>
+			                    </div>
 
-				                    <div className="col_one_third col_last">
-				                        <div className="feature-box fbox-center fbox-effect">
-				                            <div className="fbox-icon">
-				                                <a href="#"><i className="icon-dollar i-alt"></i></a>
-				                            </div>
-				                            <h3>Payment</h3>
-				                            <p>Simply pay via your Paypal</p>
-				                        </div>
-				                    </div>
-				                </div>
-							</div>
+			                    <div className="col_one_third col_last">
+			                        <div className="feature-box fbox-center fbox-effect">
+			                            <div className="fbox-icon">
+			                                <a href="#"><i className="icon-dollar i-alt"></i></a>
+			                            </div>
+			                            <h3>Payment</h3>
+			                            <p>Simply pay via your Paypal</p>
+			                        </div>
+			                    </div>
+			                </div>
+						</div>
+		                <div className="container clearfix">
+		                	<div className="col-md-1">
+		                	</div>
 
-
-			                <div className="container clearfix">
-			                	<div className="col-md-1">
-			                	</div>
-
-		                		<div className="col-md-11">
-		                			<h2>Benefits</h2> 
-									<div className="heading-block">
-										<h4>Simple</h4>
-										<span>Text what you want when you want it</span>
-									</div>
-									<div className="heading-block">
-										<h4>Secured</h4>
-										<span>Automated verification for all parties</span>
-									</div>
-									<div className="heading-block">
-										<h4>Convenience</h4>
-										<span>Deliver your favorite within minutes</span>
-									</div>
+	                		<div className="col-md-11">
+	                			<h2>Benefits</h2> 
+								<div className="heading-block">
+									<h4>Simple</h4>
+									<span>Text what you want when you want it</span>
+								</div>
+								<div className="heading-block">
+									<h4>Secured</h4>
+									<span>Automated verification for all parties</span>
+								</div>
+								<div className="heading-block">
+									<h4>Convenience</h4>
+									<span>Deliver your favorite within minutes</span>
 								</div>
 							</div>
+						</div>
 		            </div>
 		        </section>
-
 			</div>
 		);
 	}

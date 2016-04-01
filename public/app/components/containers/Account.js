@@ -101,8 +101,6 @@ var Account = React.createClass({
 
 	render: function(){
 
-		
-
 		var orderList = null;
 		if (this.state.orders != null){
 			orderList = this.state.orders.map(function(order, i){
@@ -110,7 +108,6 @@ var Account = React.createClass({
 			});
 
 		}
-
 
 		return (
 			<div>
@@ -161,14 +158,10 @@ var Account = React.createClass({
 
 												</form>
 											</div>
-
 										</div>
-
 									</div>
 									<div className="tab-content clearfix" id="tabs-7" >
-
 										<div className="col_two_third nobottommargin">
-
 											<div className="well well-lg nobottommargin" style={{border:'2px inset red'}}>
 												<form id="login-form" name="login-form" className="nobottommargin" action="#" method="post">
 
@@ -187,12 +180,9 @@ var Account = React.createClass({
 													<div className="col_full nobottommargin">
 														<button onClick={this.submitOrder} className="button button-3d nomargin" id="login-form-submit" name="login-form-submit" value="update">Submit Order</button>
 													</div>
-
 												</form>
 											</div>
-
 										</div>
-
 									</div>
 									<div className="tab-content clearfix" id="tabs-8">
 
@@ -209,22 +199,15 @@ var Account = React.createClass({
 										  	  {orderList}
 										  </tbody>
 										</table>
-
 									</div>
-
 								</div>
-
 							</div>
-
-
 		                </div>
 		            </div>
 		        </section> 
-
 			</div>
 		);
 	}
-
 });
 
 module.exports = Account;
