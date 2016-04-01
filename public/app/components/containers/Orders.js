@@ -5,6 +5,7 @@ var FetchServerActions = require('../../actions/FetchServerActions');
 var FetchClientActions = require('../../actions/FetchClientActions');
 var ReactBootstrap = require('react-bootstrap');
 var Modal = ReactBootstrap.Modal;
+var Time =require('react-time');
 
 
 var Orders = React.createClass({
@@ -47,7 +48,9 @@ var Orders = React.createClass({
 			return;
 		}
 
-		FetchServerActions.fetchOrders();
+		FetchServerActions.fetchOrders({
+			status: 'pending'
+		});
 	},
 
 	refreshOrders: function(){
@@ -89,18 +92,33 @@ var Orders = React.createClass({
 	showModal: function(event){
 		
 		event.preventDefault();
-		var order = this.state.orders['fetcher'];
-		var status = this.state.orders['status'];
-		if(order != this.state.currentUser.id){
-			this.setState({
-			selectedOrder: OrderStore.getOrder(event.target.id),
-			showModal: false
-		});
-			alert("This order has been claimed. Fetch again!");
+		// var order = this.state.orders['fetcher'];
+		// var status = this.state.orders['status'];
+		// if(order != this.state.currentUser.id){
+		// 	this.setState({
+		// 	selectedOrder: OrderStore.getOrder(event.target.id),
+		// 	showModal: false
+		// });
+		// 	alert("This order has been claimed. Fetch again!");
 
+		// 	return;
+		// }
+
+		var order = OrderStore.getOrder(event.target.id);
+		if(order.fetcher==''){
+			alert("to update please claim order");
 			return;
 		}
 
+		if(order.fetcher!= this.state.currentUser.id){
+			alert('nice try')
+			return;
+		}
+
+		if(order.status=='delivered'){
+			alert('already delivered');
+			return;
+		}
 
 		this.setState({
 			selectedOrder: OrderStore.getOrder(event.target.id),
@@ -121,13 +139,25 @@ var Orders = React.createClass({
 		var params = {
 			cost: this.state.selectedOrder.cost,
 			status:'delivered',
-			timeDelivered:Date.now()
+			timeDelivered:Date.now(),
+
 		}
 
 		FetchServerActions.updateOrder(orderId,params);
 		this.setState({
-			showModal: false
+
+			showModal: false,
+
 		});
+	},
+
+	truncate: function(text,limit){
+		if(text.length <limit)
+			return text;
+
+		return text.substring(0, limit)+'...';
+
+
 	},
 
 	render: function(){
@@ -138,14 +168,21 @@ var Orders = React.createClass({
 		if (this.state.orders != null){
 			orderList = this.state.orders.map(function(order, i){
 
+				// if(order.status =="delivered"){
+				// 	row = '';
+				// }
 				if (order.fetcher.length > 0){ // this order is claimed
-					row = <tr key={i}><td>{i+1}</td><td><a onClick={_this.showModal} id={order.id} href="#">{order.order}</a></td><td>{order.address}</td><td>{order.status}</td><td>{order.timeplaced}</td><td><button onClick={_this.claimOrder} id={i} className="btn btn-danger">Claimed</button></td></tr>;
+					row = <tr key={i}><td>{i+1}</td><td><a onClick={_this.showModal} id={order.id} href="#">{_this.truncate(order.order,20)}</a></td><td>{order.address}</td><td>{order.status}</td><td><Time value={order.timeplaced} format="YYYY/MM/DD" /></td><td><button onClick={_this.claimOrder} id={i} className="btn btn-danger">Claimed</button></td></tr>;
 				}
-				else {
-					row = <tr key={i}><td>{i+1}</td><td><a onClick={_this.showModal} id={order.id} href="#">{order.order}</a></td><td>{order.address}</td><td>{order.status}</td><td>{order.timeplaced}</td><td><button onClick={_this.claimOrder} id={i} className="btn btn-success">Claim</button></td></tr>;
+				else{
+					row = <tr key={i}><td>{i+1}</td><td><a onClick={_this.showModal} id={order.id} href="#">{_this.truncate(order.order,20)}</a></td><td>{order.address}</td><td>{order.status}</td><td><Time value={order.timeplaced} format="YYYY/MM/DD" /></td><td><button onClick={_this.claimOrder} id={i} className="btn btn-success">Claim</button></td></tr>;
 				}
 
+
+
 				return row;
+
+
 			});
 
 		}
