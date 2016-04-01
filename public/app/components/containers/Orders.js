@@ -124,7 +124,10 @@ var Orders = React.createClass({
 					
 					<h1>The order is: <span style={{color:'blue'}}>{this.state.selectedOrder.order}</span></h1>
 					<h2>The address is: <span style={{color:'blue'}}>{this.state.selectedOrder.address}</span></h2>
+					<form role="form">
+					<input  value="" type="text" id="cost" name="login-form-username" placeholder="Cost of Order" className="form-control" />
 					<button onClick={_this.closeModal}>OK</button>
+					</form>
 				</Modal.Header>
 				
 
