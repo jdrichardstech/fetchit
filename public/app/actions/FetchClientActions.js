@@ -20,6 +20,14 @@ module.exports = {
 		});
 
 
+	},
+
+	updateSelectedOrder: function(updatedOrder){
+		FetchDispatcher.dispatch({
+			type: FetchConstants.SELECTED_ORDER_UPDATED,
+			selectedOrder: updatedOrder
+		});
+
 	}
 
 

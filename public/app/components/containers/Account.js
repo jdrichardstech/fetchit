@@ -81,8 +81,8 @@ var Account = React.createClass({
 			id: this.state.currentOrder.id,
 			order: this.state.currentOrder.order,
 			address: this.state.currentOrder.address,
-			customer: this.state.currentUser.id,
-			cost: this.state.currentOrder.cost
+			customer: this.state.currentUser.id
+			
 		}
 
 

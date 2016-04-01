@@ -8,7 +8,8 @@ var currentOrder = {
 	id: null,
 	order: '',
 	address: '',
-	customer: ''
+	customer: '',
+	cost:''
 }
 
 var orders = null;
@@ -101,6 +102,15 @@ OrderStore.dispatchToken = FetchDispatcher.register(function(action) {
 			orders = {}
 
 		var updatedOrder = action.updatedOrder;
+		orders[updatedOrder.id] = updatedOrder;
+     	OrderStore.emitChange();
+	}
+
+	if (action.type == FetchConstants.SELECTED_ORDER_UPDATED){
+		if (orders == null)
+			orders = {}
+
+		var updatedOrder = action.selectedOrder;
 		orders[updatedOrder.id] = updatedOrder;
      	OrderStore.emitChange();
 	}
