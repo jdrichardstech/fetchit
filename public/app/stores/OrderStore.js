@@ -49,6 +49,10 @@ var OrderStore = assign({}, EventEmitter.prototype, {
 			return array;
 		}
 
+	},
+
+	getOrder: function(orderId){
+		return orders[orderId];
 	}
 
 });

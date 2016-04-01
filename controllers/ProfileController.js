@@ -115,7 +115,7 @@ module.exports = {
 	notifyProfiles: function(filters, note, subject){
 		return new Promise(function (resolve,reject){
 			
-				Profile.find(filters, function(err, profiles){
+			Profile.find(filters, function(err, profiles){
 				if (err){
 					reject(err)
 				}
