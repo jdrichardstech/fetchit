@@ -9,7 +9,7 @@ var Footer = React.createClass({
 	            <div id="copyrights">
 	                <div className="container clearfix">
 	                    <div className="col_half">
-	                        Copyrights &copy; 2016 All Rights Reserved by Canvas Inc.<br />
+	                        Copyrights &copy; 2016 All Rights Reserved by JDRichardsTech<br />
 	                        <div className="copyright-links">
 	                        	<a href="#">Terms of Use</a> / <a href="#">Privacy Policy</a>
 	                        </div>

@@ -11,13 +11,11 @@ var Home = React.createClass({
 
 		                <div className="swiper-container swiper-parent">
 		                    <div className="swiper-wrapper">
-		                        <div className="swiper-slide" style={{backgroundImage: 'url("images/slider/swiper/1.jpg")', backgroundPosition: 'center top'}}>
+
+		                        <div className="swiper-slide" style={{backgroundImage: 'url("images/slider/swiper/fetch_bkg3.jpg")', backgroundPosition: 'center top'}}>
 		                            <div className="container clearfix">
 		                                <div className="slider-caption slider-caption-left">
-		                                	<br />
-		                                    <h2 style={{color:'#fff'}} data-caption-animate="fadeInUp">Fetch</h2>
-		                                    <p style={{color:'#fff'}} data-caption-animate="fadeInUp" data-caption-delay="200">What you want <br />&amp; When you want it!.</p>
-		                                </div>
+		         		                </div>
 		                            </div>
 		                        </div>
 		                    </div>
@@ -59,7 +57,7 @@ var Home = React.createClass({
 			                                <a href="#"><i className="icon-bolt i-alt"></i></a>
 			                            </div>
 			                            <h3>Fetch</h3>
-			                            <p>Fetecher will deliver items less than 30mins</p>
+			                            <p>Fetcher will deliver items less than 30mins</p>
 			                        </div>
 			                    </div>
 
@@ -90,7 +88,7 @@ var Home = React.createClass({
 								</div>
 								<div className="heading-block">
 									<h4>Convenience</h4>
-									<span>Deliver your favorite within minutes</span>
+									<span>We fetch and deliver your desired items in no time</span>
 								</div>
 							</div>
 						</div>

@@ -79,8 +79,9 @@ var Register = React.createClass({
 		return(
 			<form role="form" className="landing-wide-form landing-form-overlay dark nobottommargin clearfix" style={{bottom:36}}>
                 <div className="heading-block nobottommargin nobottomborder">
-                    <h2>Signup for FREE</h2>
-                    <span>Get 30 Days Unlimited Access</span>
+                    <h2 style={{color:'white'}}>Fetching your every need</h2>
+
+                    <span>Sign up to be a fetcher or a customer</span>
                 </div>
                 <div className="line" style={{margin: '20px 0 30px'}}></div>
                 <div className="col_full">
@@ -99,7 +100,7 @@ var Register = React.createClass({
                     </select>
                 </div>
                 <div className="col_full nobottommargin">
-                    <button onClick={this.register} className="btn btn-lg btn-success btn-block nomargin" value="submit">START FREE TRIAL</button>
+                    <button onClick={this.register} className="btn btn-lg btn-success btn-block nomargin" value="submit">START NOW</button>
                 </div>
                 <div className="col_full nobottommargin" style={{textAlign:'center', marginTop:24}}>
                     <a href="/login">Log In</a>
