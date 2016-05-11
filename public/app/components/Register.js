@@ -77,6 +77,7 @@ var Register = React.createClass({
 
 	render: function(){
 		return(
+			
 			<form role="form" className="landing-wide-form landing-form-overlay dark nobottommargin clearfix" style={{bottom:36}}>
                 <div className="heading-block nobottommargin nobottomborder">
                     <h2 style={{color:'white'}}>Fetching your every need</h2>

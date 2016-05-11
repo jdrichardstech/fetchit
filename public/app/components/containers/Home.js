@@ -24,7 +24,9 @@ var Home = React.createClass({
 		            </div>
 
 		            <div className="container clearfix">
+		            
 		                <Register />
+		                
 		            </div>
 		        </section>
 
