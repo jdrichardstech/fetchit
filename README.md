@@ -13,7 +13,7 @@ include your real email address when you sign up and you will receive an email w
 <li>You will receive an email after you make your order and again after your order has been claimed. (sign up as a fetcher and claim your order on the back end)</li>
 </ul>
 
-<strong>To run deployed heroku app copy and paste address below:</strong>
+<strong>To run deployed heroku app copy and paste url:</strong>
 <br />
 jdrichardstech-fetch.herokuapp.com
 
