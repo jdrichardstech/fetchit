@@ -14,7 +14,7 @@ include your real email address when you sign up and you will receive an email w
 </ul>
 
 <strong>To run deployed heroku app copy and paste address below:</strong>
-<br /><br />
+<br />
 jdrichardstech-fetch.herokuapp.com
 
 <strong>To clone app:</strong><br />
