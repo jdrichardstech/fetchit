@@ -3,102 +3,99 @@ var router = express.Router();
 var ProfileController = require('../controllers/ProfileController');
 var bcrypt = require('bcrypt');
 
-
-function createErrorResponse(msg){
-	return {
-		confirmation:'fail',
-		message: msg
-	}
+function createErrorResponse(msg) {
+  return {
+    confirmation: 'fail',
+    message: msg
+  };
 }
 
 router.get('/:resource', function(req, res, next) {
-	var resource = req.params.resource;
+  var resource = req.params.resource;
 
-	if (resource == 'logout'){
-		req.session.reset();
-		res.redirect('/');
-	}
+  if (resource == 'logout') {
+    req.session.reset();
+    res.redirect('/');
+  }
 
-	if (resource == 'currentuser'){
-		if (req.session == null){
-			res.json(createErrorResponse('User Not Logged In.'));
-			return;
-		}
+  if (resource == 'currentuser') {
+    if (req.session == null) {
+      res.json(createErrorResponse('User Not Logged In.'));
+      return;
+    }
 
-		if (req.session.user == null){
-			res.json(createErrorResponse('User Not Logged In.'));
-			return;
-		}
+    if (req.session.user == null) {
+      res.json(createErrorResponse('User Not Logged In.'));
+      return;
+    }
 
-		ProfileController.getById(req.session.user, function(err, result){
-			if (err){
-				res.json(createErrorResponse(err.message));
-				return;
-			}
+    ProfileController.getById(req.session.user, function(err, result) {
+      if (err) {
+        res.json(createErrorResponse(err.message));
+        return;
+      }
 
-			res.json({
-				confirmation:'success',
-				profile: result
-			});
+      res.json({
+        confirmation: 'success',
+        profile: result
+      });
 
-			return;
-		});
-	}
+      return;
+    });
+  }
 });
 
 router.post('/:resource', function(req, res, next) {
-	var resource = req.params.resource;
-	if (resource == 'register'){
-		ProfileController.post(req.body, function(err, result){
-			if (err){
-				res.json(createErrorResponse(err.message));
-			    return;
-			}
+  var resource = req.params.resource;
+  if (resource == 'register') {
+    ProfileController.post(req.body, function(err, result) {
+      if (err) {
+        res.json(createErrorResponse(err.message));
+        return;
+      }
 
-			req.session.user = p._id;
-		    res.json({
-		    	confirmation:'success',
-		    	result: result
-		    });
+      req.session.user = p._id;
+      res.json({
+        confirmation: 'success',
+        result: result
+      });
 
-		    return;
-		});
+      return;
+    });
+  }
 
-	}
+  if (resource == 'login') {
+    ProfileController.get({ email: req.body.email }, true, function(
+      err,
+      results
+    ) {
+      if (err) {
+        res.json(createErrorResponse(err.message));
+        return;
+      }
 
+      if (results.length == 0) {
+        res.json(createErrorResponse('User Not Found'));
+        return;
+      }
 
-	if (resource == 'login'){
-		ProfileController.get({email:req.body.email}, true, function(err, results){
-			if (err){
-				res.json(createErrorResponse(err.message));
-				return;
-			}
+      var p = results[0];
+      var passwordCorrect = bcrypt.compareSync(req.body.password, p.password);
+      if (passwordCorrect == false) {
+        res.json(createErrorResponse('Incorrect Password'));
+        return;
+      }
 
-			if (results.length == 0){
-				res.json(createErrorResponse('User Not Found'));
-				return;
-			}
+      req.session.user = p._id;
 
-			var p = results[0];
-			var passwordCorrect = bcrypt.compareSync(req.body.password, p.password);
-			if (passwordCorrect == false){
-				res.json(createErrorResponse('Incorrect Password'));
-				return;
-			}
+      res.json({
+        confirmation: 'success',
+        profile: p.summary()
+      });
 
-			req.session.user = p._id;
-
-			res.json({
-				confirmation:'success',
-				profile: p.summary()
-			});
-
-			return;
-		});
-	}
-
+      return;
+    });
+  }
 });
 
 module.exports = router;
-
-
