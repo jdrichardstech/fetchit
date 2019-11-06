@@ -19,7 +19,7 @@
     "hjs": "~0.0.6",
     "hogan-middleware": "^0.1.0",
     "moment": "^2.12.0",
-    "mongoose": "^4.4.8",
+    "mongoose": "^5.7.5",
     "morgan": "^1.9.1",
     "object-assign": "^4.0.1",
     "react": "^0.14.7",
